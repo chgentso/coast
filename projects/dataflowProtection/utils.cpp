@@ -98,8 +98,9 @@ int dataflowProtection::getFunctionsFromConfig(){
 	if(configFileLocation!=""){
 		filename = configFileLocation;
 	} else{
-		std::string coast = std::getenv("COAST_ROOT");
-		filename = coast + "/projects/dataflowProtection/functions.config";
+		char *coast = std::getenv("COAST_ROOT");
+		if (coast)
+			filename = std::string(coast) + "/projects/dataflowProtection/functions.config";
 	}
 	std::ifstream ifs(filename, std::ifstream::in);
 
