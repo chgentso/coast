@@ -207,7 +207,7 @@ void CFCSS::BubbleSort(){
 			if((graph[j]->num) > (graph[j+1]->num)){
 				CFCSS::BBNode* b = graph[j];
 				graph[j] = graph[j+1];
-				graph[j] = b;
+				graph[j+1] = b;
 			}
 		}
 	}
