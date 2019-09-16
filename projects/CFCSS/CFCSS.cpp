@@ -760,7 +760,7 @@ bool CFCSS::runOnModule(Module &M) {
 				continue;
 			}
 //			assert(calledF && "Called function is valid");
-			else if (!calledF->isDeclaration() && !shouldSkipF(calledF->getName())){
+			else if (!calledF->isDeclaration() && !shouldSkipF(calledF->getName()) && !skipFnCl(calledF)){
 				updateCallInsts(callI, bn, IT1, RTS, RTSA);
 				callInstList.push_back(callI);
 				callCount[calledF->getName()] += 1;
