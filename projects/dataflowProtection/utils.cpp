@@ -414,9 +414,11 @@ void dataflowProtection::removeAnnotations(Module& M){
 
 	for(auto rm : toRemove){
 		auto op0 = dyn_cast<Instruction>(rm->getOperand(0));
-		rm->getParent()->getInstList().erase(rm);
+                if (rm->getParent())
+                    rm->eraseFromParent();
 		if(op0)
-			op0->getParent()->getInstList().erase(op0);
+                  if (op0->getParent())
+			op0->eraseFromParent();
 	}
 
 	if(lva){
