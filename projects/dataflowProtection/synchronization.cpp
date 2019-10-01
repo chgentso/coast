@@ -510,6 +510,11 @@ void dataflowProtection::syncTerminator(TerminatorInst* currTerminator, GlobalVa
 
 		Instruction* clone1 = dyn_cast<Instruction>(getClone(op).first);
 		Instruction* clone2 = dyn_cast<Instruction>(getClone(op).second);
+                if (!(clone1 && clone2)) {
+                  errs() << "Missing clones here:\n";
+                  errs() << *currTerminator << "\n";
+                  return;
+                }
 		assert(clone1 && clone2 && "Instruction has clones");
 
 		//Make sure we're inserting the right type of comparison
