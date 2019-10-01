@@ -449,7 +449,7 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				errs() << "User of function " << F->getName() << "\n";
 				errs() << "Type: " << *(u->getType()) << "\n\n";
 			}
-			assert(callInst && "User is not a call instruction");
+			// assert(callInst && "User is not a call instruction");
 
                         if (callInst)
                           for (unsigned int i = 0; i < callInst->getNumArgOperands(); i++) {
@@ -694,8 +694,8 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 				// Replace all uses of the original call instruction with the new one
 				invInst->replaceAllUsesWith(newInvInst);
 				invInst->eraseFromParent();
-			} else {
-				assert(false && "wrong type!\n");
+			// } else {
+			// 	assert(false && "wrong type!\n");
 			}
 
 		}
@@ -983,8 +983,8 @@ void dataflowProtection::cloneConstantExpr() {
 
 			//assert(eNew->isGEPWithNoNotionalOverIndexing());
 			cloneMap[e] = ValuePair(e1,e2);
-		} else {
-			assert(false && "Constant expr to clone not matching expected form");
+		// } else {
+		// 	assert(false && "Constant expr to clone not matching expected form");
 		}
 	}
 }

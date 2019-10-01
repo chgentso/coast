@@ -429,7 +429,7 @@ void dataflowProtection::processCallSync(CallInst* currCallInst, GlobalVariable*
 					}
 				}
 			}
-			assert(useCount==2 && "Instruction only used in call sync");
+			// assert(useCount==2 && "Instruction only used in call sync");
 			insertTMRCorrectionCount(cmp,TMRErrorDetected);
 		} else{
 			cmpInstList.push_back(cmp);
