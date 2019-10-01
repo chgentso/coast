@@ -56,7 +56,7 @@ bool dataflowProtection::run(Module &M, int numClones) {
 	processAnnotations(M);
 
 	//Remove annotations here so they aren't cloned
-	removeAnnotations(M);
+	// removeAnnotations(M);
 
 	// Make sure that the command line options are correct
 	processCommandLine(M, numClones);
@@ -102,8 +102,8 @@ bool dataflowProtection::run(Module &M, int numClones) {
 
 	// Clean up
 	removeUnusedErrorBlocks(M);
-	checkForUnusedClones(M);
-	removeUnusedGlobals(M);
+	// checkForUnusedClones(M);
+	// removeUnusedGlobals(M);
 
 	// This is executed if code is segmented instead of interleaved
 	moveClonesToEndIfSegmented(M);
