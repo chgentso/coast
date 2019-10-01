@@ -282,6 +282,7 @@ void dataflowProtection::processAnnotations(Module& M){
 	auto global_annos = M.getNamedGlobal("llvm.global.annotations");
 	if(global_annos){
 		auto a = cast<ConstantArray>(global_annos->getOperand(0));
+                if (a)
 		for(int i=0; i < a->getNumOperands(); i++){
 			auto e = cast<ConstantStruct>(a->getOperand(i));
 
@@ -401,10 +402,11 @@ void dataflowProtection::removeAnnotations(Module& M){
 			for (auto & I : bb) {
 				if(auto CI = dyn_cast<CallInst>(&I)){
 					auto called = CI->getCalledFunction();
-					if(called->getName() == "llvm.var.annotation"){
-						lva = called;
-						toRemove.insert(CI);
-					}
+                                        if (called)
+                                          if(called->getName() == "llvm.var.annotation"){
+                                            lva = called;
+                                            toRemove.insert(CI);
+                                          }
 				}
 			}
 		}
@@ -484,7 +486,8 @@ void dataflowProtection::removeUnusedGlobals(Module& M){
 		if (verboseFlag) {
 			errs() << "Removing unused global: " << ug->getName() << "\n";
 		}
-		ug->eraseFromParent();
+                if (ug->getParent())
+                  ug->eraseFromParent();
 	}
 }
 

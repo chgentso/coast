@@ -451,11 +451,12 @@ void dataflowProtection::cloneFunctionArguments(Module & M) {
 			}
 			assert(callInst && "User is not a call instruction");
 
-			for (unsigned int i = 0; i < callInst->getNumArgOperands(); i++) {
-				if (willBeCloned(callInst->getArgOperand(i))) {
-					cloneArg[i] = true;
-				}
-			}
+                        if (callInst)
+                          for (unsigned int i = 0; i < callInst->getNumArgOperands(); i++) {
+                            if (willBeCloned(callInst->getArgOperand(i))) {
+                              cloneArg[i] = true;
+                            }
+                          }
 		}
 
 		// Check if any parameters need clones
