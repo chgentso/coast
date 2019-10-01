@@ -1051,7 +1051,7 @@ GlobalVariable * dataflowProtection::copyGlobal(Module & M, GlobalVariable * g, 
 	gNew->setUnnamedAddr(g->getUnnamedAddr());
 
 	if (verboseFlag)
-		errs() << "New dupicate global: " << gNew->getName() << "\n";
+		errs() << "New duplicate global: " << gNew->getName() << "\n";
 
 	return gNew;
 }
